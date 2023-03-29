@@ -4,8 +4,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import {
   QUERY_CURRENT_USER,
-  QUERY_PROJECT,
   QUERY_DONATIONS,
+  QUERY_PROJECT,
 } from '../graphql/queries';
 
 //generate all user donations
@@ -16,13 +16,25 @@ const MyDonations = () => {
 
   const user = data?.getCurrentUser || {};
 
+  // const userDonate = data?.getDonationById || {};
+
+  const done = useQuery(QUERY_PROJECT);
+
+  const donionRings = done?.getProjectById || {};
+
+  console.log(donionRings);
+
+  const userProjects = data?.getCurrentUser.projects || {};
+
   const donation = data?.getCurrentUser.donationAmount || {};
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  console.log(user);
+  //const currentUserDonation = useQuery(QUERY_DONATIONS);
+
+  //console.log(userProjects);
 
   return (
     <div className="dashboard">

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useLocation, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_PROJECT } from '../graphql/queries';
+import { QUERY_PROJECT, QUERY_CURRENT_USER } from '../graphql/queries';
 import Logo from '../assets/Monied-1 (1).png';
 import {
   FaTwitter,
@@ -18,6 +18,9 @@ const ProjectView = (props) => {
 
   let getId = location.pathname.split('/');
 
+  const getUser = useQuery(QUERY_CURRENT_USER);
+  const userId = getUser.data?.getCurrentUser._id || {};
+
   const { loading, data } = useQuery(QUERY_PROJECT, {
     variables: { id: getId[2] },
   });
@@ -27,41 +30,40 @@ const ProjectView = (props) => {
   }
 
   const project = data?.getProjectById || {};
-  console.log(data);
+
+  const anonymous = data?.getProjectById.donations.commentBody
 
   const comments = data?.getProjectById.donations.map((donation) => {
-    return (
-      <div>
-        <div className="col-sm comment-name">
-          <FaRegUserCircle className="user-icon"></FaRegUserCircle>
-          {donation.donatorName}
+    if (donation.commentBody != null && donation.commentBody != "") {
+      return (
+        <div>
+          <div className="col-sm comment-name">
+            <FaRegUserCircle className="user-icon"></FaRegUserCircle>
+            {donation.donatorName}
+          </div>
+          <div className="col-sm comment-quote">"{donation.commentBody}"</div>
         </div>
-        <div className="col-sm comment-quote">"{donation.commentBody}"</div>
-      </div>
-    );
+      );
+    }
   });
 
   const donationValues = data?.getProjectById.donations.map(
     (donation) => donation.donationAmount
   );
-  console.log(donationValues);
 
   const totalDonations = donationValues.reduce((accumulator, currentValue) => {
     return accumulator + currentValue;
   }, 0);
 
   //logic for progress bar %
-  const goalPercent = (totalDonations / project.projectGoal) * 100;
+  const goalPercent = Math.round((totalDonations / project.projectGoal) * 100);
   const barWidth = goalPercent + '%';
-
-  // const user = data?.getCurrentUser || {};
 
   return (
     <div className="container page-style">
       <div className="row justify-content-md-center ">
         <div className="col-md-auto d-flex">
           <div className="card project-view">
-            <div>Back</div>
             <div className="new-project-form card-body ">
               <h1 className="card-title">{project.projectTitle}</h1>
               <div className="row">
@@ -99,6 +101,7 @@ const ProjectView = (props) => {
                       state={{
                         projectTitle: project.projectTitle,
                         projectId: project._id,
+                        userId: userId,
                       }}
                     >
                       <button className="btn btn-light" id="donate-btn">

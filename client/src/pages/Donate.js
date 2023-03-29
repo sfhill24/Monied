@@ -7,61 +7,47 @@
 //submit button
 //</card>
 
-import React, { useState } from "react";
-import { useLocation } from 'react-router-dom'
-import { useMutation } from "@apollo/client";
-import { ADD_DONATION } from "../graphql/mutations";
-import { QUERY_CURRENT_USER, QUERY_PROJECT, QUERY_PROJECT_CATEGORY } from "../graphql/queries";
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useMutation, useQuery } from '@apollo/client';
+import { useNavigate } from "react-router-dom";
+import { ADD_DONATION } from '../graphql/mutations';
+import {
+  QUERY_CURRENT_USER,
+  QUERY_PROJECT,
+  QUERY_PROJECT_CATEGORY,
+} from '../graphql/queries';
 
 const Donation = (props) => {
   const [formState, setFormState] = useState({
     donatorName: '',
     donationAmount: '',
     isAnonymous: false,
-    commentBody: ''
+    commentBody: '',
   });
 
-  const location = useLocation()
-  const { projectTitle, projectId } = location.state || {};
+  const navigate = useNavigate();
 
-  const [addDonation, { error }] = useMutation(ADD_DONATION, {
-    update(cache, { data: { addDonation } }) {
-      try {
-        const { getCurrentUser } = cache.readQuery({
-          query: QUERY_CURRENT_USER,
-        });
-        cache.writeQuery({
-          query: QUERY_CURRENT_USER,
-          data: {
-            getCurrentUser: {
-              ...getCurrentUser,
-              projects: [...getCurrentUser.projects, addDonation],
-            },
-          },
-        });
-      } catch (e) {
-        console.warn("First project insertion by user!");
-      }
+  const location = useLocation();
+  const { projectTitle, projectId, userId } = location.state || {};
 
-      const { projects } = cache.readQuery({ query: QUERY_PROJECT });
-      cache.writeQuery({
-        query: QUERY_PROJECT,
-        data: { projects: [addDonation, ...projects] },
-      });
-    },
-  });
+  const [addDonation, { error }] = useMutation(ADD_DONATION);
 
   const handleIsAnonymousChanged = () => {
     let newIsAnonymousValue = !formState.isAnonymous;
     
     if (newIsAnonymousValue === true) {
-      setFormState({ ...formState, 
+      setFormState({
+        ...formState,
         isAnonymous: newIsAnonymousValue,
-        donatorName: "Anonymous" });
+        donatorName: "Anonymous"
+      });
     } else {
-      setFormState({ ...formState,
+      setFormState({
+        ...formState,
         isAnonymous: newIsAnonymousValue,
-        donatorName: "" });
+        donatorName: ""
+      });
     }
   };
 
@@ -81,9 +67,13 @@ const Donation = (props) => {
           donationAmount: parseInt(formState.donationAmount),
           commentBody: formState.commentBody,
           isAnonymous: formState.isAnonymous,
-          projectId: projectId      
+          createdByID: userId,
+          projectId: projectId,
         },
       });
+
+       navigate(`/project/${projectId}`);
+       window.location.reload();
 
     } catch (e) {
       console.error(e);
@@ -93,24 +83,67 @@ const Donation = (props) => {
   return (
     <div>
       <h2 className="section-title">{projectTitle}</h2>
-      <form className="monied-form new-project-form" onSubmit={handleFormSubmit}>
+      <form
+        className="monied-form new-project-form"
+        onSubmit={handleFormSubmit}
+      >
         <div className="form-floating mb-3">
-          <input className="form-control" name="donatorName" placeholder="Name" value={formState.donatorName} onChange={handleChange} disabled={formState.isAnonymous} />
-          <label className="form-label" htmlFor="donatorName">Name</label>
+          <input
+            className="form-control"
+            name="donatorName"
+            placeholder="Name"
+            value={formState.donatorName}
+            onChange={handleChange}
+            disabled={formState.isAnonymous}
+          />
+          <label className="form-label" htmlFor="donatorName">
+            Name
+          </label>
         </div>
         <div className="form-check mb-3">
-          <input type="checkbox" className="form-check-input" name="isAnonymous" checked={formState.isAnonymous} onChange={handleIsAnonymousChanged}/>
-          <label className="form-check-label" htmlFor="isAnonymous">Anonymous Donation</label>
+          <input
+            type="checkbox"
+            className="form-check-input"
+            name="isAnonymous"
+            checked={formState.isAnonymous}
+            onChange={handleIsAnonymousChanged}
+          />
+          <label className="form-check-label" htmlFor="isAnonymous">
+            Anonymous Donation
+          </label>
         </div>
         <div className="form-floating mb-3">
-          <input type="number" className="form-control" name="donationAmount" placeholder="Donation Amount" value={formState.donationAmount} onChange={handleChange} />
-          <label className="form-label" htmlFor="donationAmount">Donation Amount</label>
+          <input
+            type="number"
+            className="form-control"
+            name="donationAmount"
+            placeholder="Donation Amount"
+            value={formState.donationAmount}
+            onChange={handleChange}
+          />
+          <label className="form-label" htmlFor="donationAmount">
+            Donation Amount
+          </label>
         </div>
         <div className="form-floating mb-3">
-          <textarea className="form-control" rows="4" name="commentBody" placeholder="Comment" value={formState.commentBody} onChange={handleChange} />
-          <label className="form-label" htmlFor="commentBody">Comment</label>
+          <textarea
+            className="form-control"
+            rows="4"
+            name="commentBody"
+            placeholder="Comment"
+            value={formState.commentBody}
+            onChange={handleChange}
+          />
+          <label className="form-label" htmlFor="commentBody">
+            Comment
+          </label>
         </div>
-        <button type="submit">Submit</button>
+        <button
+          className="project-submit-btn btn btn-light btn-outline-success"
+          type="submit"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

@@ -1,7 +1,8 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-
+  scalar Upload
+  
   type User {
     _id: ID
     firstName: String
@@ -34,6 +35,7 @@ const typeDefs = gql`
     isAnonymous: Boolean
     commentBody: String
     createdBy: String
+    createdByID: ID
     project: [Project]
   }
 
@@ -42,9 +44,14 @@ const typeDefs = gql`
     user: User
   }
 
+  type Image {
+    url: String
+  }
+
 
   type Query {
     getCurrentUser: User
+    getAllProjects: [Project]
     getProjectById(_id: ID!): Project
     getProjectByCategory(projectCategory: String!): [Project]
     getDonationById(userId: ID!, projectId: ID!): [Donation]
@@ -70,7 +77,7 @@ const typeDefs = gql`
       organizationName: String!
       projectCategory: String!
       projectDescription: String!
-      projectGoal: Int! 
+      projectGoal: Int!
       twitterAccount: String
       facebookAccount: String
       email: String
@@ -81,6 +88,7 @@ const typeDefs = gql`
       donationAmount: Int
       isAnonymous: Boolean
       commentBody: String
+      createdByID: ID
       projectId: ID
     ): Donation
 
@@ -96,7 +104,7 @@ const typeDefs = gql`
 
     favoriteProject(projectId: ID): User
 
-
+    uploadImage(file: Upload!): Image!
   }
 `;
 

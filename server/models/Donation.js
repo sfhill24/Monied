@@ -30,6 +30,10 @@ const donationSchema = new Schema({
     required: true,
     //only show this on front end if anonymousCheck is false
   },
+  createdByID: {
+     type: Schema.Types.ObjectId,
+     ref: 'User'
+  },
   project: {
     type: Schema.Types.ObjectId,
     ref: "Project",

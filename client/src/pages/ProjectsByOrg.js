@@ -29,18 +29,20 @@ const ProjectsByOrg = (props) => {
     }
   };
 
+  //get currentUser info from DB
+  const currentUserRes = useQuery(QUERY_CURRENT_USER);
+
   //filter projects by organization name
   const location = useLocation();
 
   let getOrgName = location.pathname.split('/');
   console.log(getOrgName);
 
+
   const { loading, data } = useQuery(QUERY_PROJECT_ORGANIZATION, {
     variables: { organizationName: getOrgName[2] },
   });
 
-  //get currentUser info from DB
-  const currentUserRes = useQuery(QUERY_CURRENT_USER);
 
   if (loading || currentUserRes.loading) {
     return <div className="no-projects-message">Loading...</div>;
@@ -117,7 +119,7 @@ const ProjectsByOrg = (props) => {
           );
 
           //logic for progress bar %
-          const goalPercent = (totalDonations / project.projectGoal) * 100;
+          const goalPercent = Math.round((totalDonations / project.projectGoal) * 100);
           const barWidth = goalPercent + '%';
 
           return (

@@ -72,7 +72,6 @@ export const ADD_PROJECT = gql`
     $twitterAccount: String
     $facebookAccount: String
     $email: String
-
   ) {
     createProject(
       projectTitle: $projectTitle
@@ -83,7 +82,6 @@ export const ADD_PROJECT = gql`
       twitterAccount: $twitterAccount
       facebookAccount: $facebookAccount
       email: $email
-     
     ) {
       projectTitle
       organizationName
@@ -93,7 +91,6 @@ export const ADD_PROJECT = gql`
       twitterAccount
       facebookAccount
       email
-     
     }
   }
 `;
@@ -105,35 +102,33 @@ export const ADD_DONATION = gql`
     $donationAmount: Int!
     $isAnonymous: Boolean!
     $commentBody: String
+    $createdByID: ID
     $projectId: ID!
-    
   ) {
     createDonation(
       donatorName: $donatorName
       donationAmount: $donationAmount
       isAnonymous: $isAnonymous
       commentBody: $commentBody
+      createdByID: $createdByID
       projectId: $projectId
-      
     ) {
       donatorName
       donationAmount
       isAnonymous
       commentBody
+      createdByID
       _id
-     
     }
   }
 `;
 
 export const ADD_FAVORITE = gql`
-mutation($projectId: ID) {
-  favoriteProject(projectId: $projectId) {
-    favorites {
-      _id
+  mutation ($projectId: ID) {
+    favoriteProject(projectId: $projectId) {
+      favorites {
+        _id
+      }
     }
   }
-}
 `;
-
-

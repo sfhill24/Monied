@@ -22,31 +22,7 @@ const NewProject = () => {
   const [facebookAccount, setFacebookAccount] = useState('');
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
-  const [addProject, { error }] = useMutation(ADD_PROJECT, {
-    update(cache, { data: { addProject } }) {
-      try {
-        const { getCurrentUser } = cache.readQuery({
-          query: QUERY_CURRENT_USER,
-        });
-        cache.writeQuery({
-          query: QUERY_CURRENT_USER,
-          data: {
-            getCurrentUser: {
-              ...getCurrentUser,
-              projects: [...getCurrentUser?.projects, addProject],
-            },
-          },
-        });
-      } catch (e) {
-        console.warn('First project insertion by user!');
-      }
-      // const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
-      // cache.writeQuery({
-      //   query: QUERY_PROJECTS,
-      //   data: { projects: [addProject, ...projects] },
-      // });
-    },
-  });
+  const [addProject, { error }] = useMutation(ADD_PROJECT);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     // console.log(projectGoal, typeof projectGoal);
