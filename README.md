@@ -1,12 +1,11 @@
 
-  # MONIED 
+  #                                                                         MONIED 
 
-  ![badge](https://img.shields.io/badge/License-MIT-blue.svg)<br />
-
+  ![M1](https://user-images.githubusercontent.com/49098706/228930503-9f717683-7621-4900-ad5e-c08a64de54f6.png)
+  
   ## Description
   Monied is a fundraising platform for nonprofit organizations, designed to help ambitious ideas become a reality. With Monied, users can easily create projects with     donation goals, donate to these projects, and keep track of their donations - all in one place. By streamlining the fundraising process, Monied empowers nonprofits     to reach their goals faster and more efficiently than ever before. Join us in supporting social change and making a difference in the world today.
   
-  ![M1](https://user-images.githubusercontent.com/49098706/228930503-9f717683-7621-4900-ad5e-c08a64de54f6.png)
   ![M2](https://user-images.githubusercontent.com/49098706/228930513-122e7150-63a1-4278-9070-c3ac48126b38.png)
   ![M3](https://user-images.githubusercontent.com/49098706/228930531-96a534ce-1b70-4edd-bc19-22380ee82932.png)
 
@@ -16,8 +15,6 @@
   - [Installation](#installation)
   - [Usage](#usage)
   - [Collaborators](#collaborators)
-  - [License](#license)
-  - [Tests](#tests)
   - [Questions](#questions)
   
   ## Installation
@@ -36,13 +33,13 @@
 
   
   ## Collaborators
-  [Shelly FoxWorth-Hill](https://github.com/sfhill24)</br>
+  [Shelly Foxworth-Hill](https://github.com/sfhill24)</br>
   [Jennifer Argent](https://github.com/jrargent)
   
   ## License
   MIT was used for this project.
   
   ## Questions
- Find me on GitHub: [sfhill](https://github.com/sfhill)<br /> 
+ Find me on GitHub: [sfhill24](https://github.com/sfhill24)<br /> 
  </br>
  For additional questions, email me at sfhill24@gmail.com.  
