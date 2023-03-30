@@ -1,53 +1,48 @@
-# Monied
+
+  # Monied 
+
+  ![badge](https://img.shields.io/badge/License-MIT-blue.svg)<br />
+
+  ## Description
+  Monied is a fundraising platform for nonprofit organizations, designed to help ambitious ideas become a reality. With Monied, users can easily create projects with     donation goals, donate to these projects, and keep track of their donations - all in one place. By streamlining the fundraising process, Monied empowers nonprofits     to reach their goals faster and more efficiently than ever before. Join us in supporting social change and making a difference in the world today.
+  
+  ![M1](https://user-images.githubusercontent.com/49098706/228930503-9f717683-7621-4900-ad5e-c08a64de54f6.png)
+  ![M2](https://user-images.githubusercontent.com/49098706/228930513-122e7150-63a1-4278-9070-c3ac48126b38.png)
+  ![M3](https://user-images.githubusercontent.com/49098706/228930531-96a534ce-1b70-4edd-bc19-22380ee82932.png)
 
 
-## Project Description
+  ## Table of Contents 
 
-Monied is a fundraising platform for nonprofit organizations. The goal is to help ambitious ideas be brought to life.
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Collaborators](#collaborators)
+  - [License](#license)
+  - [Tests](#tests)
+  - [Questions](#questions)
+  
+  ## Installation
+   MongoDB </br>
+   GraphQL  </br>
+   Node.js </br>
+   MoExpress.js </br>
+   MongoDB </br>
+   Heroku </br>
+   Authentication (JWT) </br>
+  
+  ## Usage
+  Monied is deployed on Heroku. See links below:
 
-Monied will allow users to create projects with donation goals, donate to projects, and keep track of their donations.
+  https://monied-2.herokuapp.com/
 
-____________
-
-
-## User Story + Motivation
-
-As a User, I want to be able to create a fundraising project to which many people can donate.
-
-I want to be able to see donation amounts, which users have donated, and whether donation goals/incentives have been met on my project(s).
-
-As a user, I want to see which projects I have donated to and what amounts I have donated.
-
-Motivation? Monied is a platform to help nonprofits get their footing with funding and start reaching their goals.
-
-![image](https://user-images.githubusercontent.com/49098706/211964362-584e757c-ea43-4d84-84be-4f168030394d.png)
-
-Heroku-deployed app: (https://aqueous-scrubland-12058.herokuapp.com/)
-
-____________
-
-## Technologies
-
-- React
-- GraphQL with a Node.js and Express.js server
-- MongoDB and the Mongoose ODM
-- Heroku (with data)
-- Authentication (JWT)
-
-____________
-
-Created by:
-
-- [Krista Cannady](https://github.com/kristacannady)
-- [William Chalk](https://github.com/william-chalk)
-- [Jennifer Argent](https://github.com/jrargent)
-- [Shelly FoxWorth-Hill](https://github.com/sfhill24)
-- [Madeline Ramos](https://github.com/MadelineRamos)
-
-____________
-
-Monied is deployed on Heroku. See links below:
-
-GiHub repository: https://github.com/kristacannady/Monied
-
-
+  
+  ## Collaborators
+  [Shelly FoxWorth-Hill](https://github.com/sfhill24)
+  [Jennifer Argent](https://github.com/jrargent)
+  
+  ## License
+  MIT was used for this project.
+  
+  ## Questions
+ Find me on GitHub: [sfhill](https://github.com/sfhill)<br /> 
+ </br>
+ For additional questions, email me at sfhill24@gmail.com.  
