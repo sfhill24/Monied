@@ -1,5 +1,5 @@
 
-  # Monied 
+  # MONIED 
 
   ![badge](https://img.shields.io/badge/License-MIT-blue.svg)<br />
 
@@ -36,7 +36,7 @@
 
   
   ## Collaborators
-  [Shelly FoxWorth-Hill](https://github.com/sfhill24)
+  [Shelly FoxWorth-Hill](https://github.com/sfhill24)</br>
   [Jennifer Argent](https://github.com/jrargent)
   
   ## License
